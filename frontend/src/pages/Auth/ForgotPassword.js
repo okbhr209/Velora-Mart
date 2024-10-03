@@ -2,12 +2,8 @@ import React, { useState } from "react";
 import Layout from "./../../components/Layout/Layout";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
-// import { ToastContainer, toast } from "react-toastify";
-import { ToastContainer, toast } from "react-toastify";
-
-// import toast from "react-hot-toast";
-// import "react-toastify/dist/ReactToastify.css";
-import "../../styles/AuthStyles.css"; //../../styles/AuthStyles.css
+import { toast } from "react-toastify";
+import "../../styles/AuthStyles.css";
 
 const ForgotPasssword = () => {
   const [email, setEmail] = useState("");

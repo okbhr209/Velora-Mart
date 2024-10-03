@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import AdminMenu from "../../components/Layout/AdminMenu";
 import Layout from "./../../components/Layout/Layout";
 import axios from "axios";
-import { ToastContainer, toast } from "react-toastify";
+import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 
 import { Link } from "react-router-dom";
@@ -51,7 +51,6 @@ const Products = () => {
                     />
                     <div className="card-body">
                       <h5 className="card-title">{p.name}</h5>
-                      {/* <p className="card-text">{p.description}</p> */}
                     </div>
                   </div>
                 </Link>

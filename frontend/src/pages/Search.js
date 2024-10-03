@@ -1,10 +1,37 @@
 import React from "react";
 import Layout from "./../components/Layout/Layout";
 import { useSearch } from "../components/context/search";
-import { Navigate, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
+import { toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
+import "../styles/HomePage.css";
+import { useCart } from "../components/context/cart";
+
 const Search = () => {
   const [values, setValues] = useSearch();
   const navigate = useNavigate();
+  const [cart, setCart] = useCart();
+
+  const addToCart = async (productId, quantity) => {
+    // Check if the product is already present in the cart
+    const existingProductIndex = cart.findIndex(
+      (item) => item.productId === productId
+    );
+
+    let updatedCart;
+    // If the product is already present, update its quantity
+    if (existingProductIndex !== -1) {
+      updatedCart = [...cart];
+      updatedCart[existingProductIndex].quantity += quantity;
+      setCart(updatedCart);
+    } else {
+      // If the product is not present, add it to the cart
+      updatedCart = [...cart, { productId, quantity }];
+      setCart(updatedCart);
+    }
+    localStorage.setItem("cart", JSON.stringify(updatedCart));
+    toast.success("Item Added to cart");
+  };
 
   return (
     <Layout title={"Search results"}>
@@ -29,7 +56,13 @@ const Search = () => {
                   <p className="card-text">
                     {p.description.substring(0, 30)}...
                   </p>
-                  <p className="card-text"> $ {p.price}</p>
+                  <p className="card-text">
+                    {" "}
+                    {p?.price?.toLocaleString("en-IN", {
+                      style: "currency",
+                      currency: "INR",
+                    })}{" "}
+                  </p>
                   <button
                     class="btn btn-primary ms-1"
                     className="btn btn-info ms-1"
@@ -37,7 +70,14 @@ const Search = () => {
                   >
                     More Details
                   </button>
-                  <button class="btn btn-secondary ms-1">ADD TO CART</button>
+                  <button
+                    className="btn btn-secondary ms-1"
+                    onClick={() => {
+                      addToCart(p, 1);
+                    }}
+                  >
+                    ADD TO CART
+                  </button>
                 </div>
               </div>
             ))}

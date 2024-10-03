@@ -2,7 +2,6 @@ import slugify from "slugify";
 import productModel from "../models/productModel.js";
 import categoryModel from "../models/categoryModel.js";
 import orderModel from "../models/orderModel.js";
-
 import fs from "fs";
 
 export const createProductController = async (req, res) => {
@@ -200,8 +199,6 @@ export const productFiltersController = async (req, res) => {
       success: true,
       products,
     });
-    console.log("Products");
-    console.log(products);
   } catch (error) {
     console.log(error);
     res.status(400).send({
@@ -255,34 +252,11 @@ export const productListController = async (req, res) => {
   }
 };
 
-// search product by ID
-// export const searchProductByIdController = async (req, res) => {
-//   try {
-//     const { ID } = req.;
-//     const resutls = await productModel
-//       .find({
-//         $or: [
-//           { name: { $regex: keyword, $options: "i" } },
-//           { description: { $regex: keyword, $options: "i" } },
-//         ],
-//       })
-//       .select("-photo");
-//     res.json(resutls);
-//   } catch (error) {
-//     console.log(error);
-//     res.status(400).send({
-//       success: false,
-//       message: "Error In Search Product API",
-//       error,
-//     });
-//   }
-// };
-
 // search product
 export const searchProductController = async (req, res) => {
   try {
     const { keyword } = req.params;
-    const resutls = await productModel
+    const results = await productModel
       .find({
         $or: [
           { name: { $regex: keyword, $options: "i" } },
@@ -290,7 +264,7 @@ export const searchProductController = async (req, res) => {
         ],
       })
       .select("-photo");
-    res.json(resutls);
+    res.json(results);
   } catch (error) {
     console.log(error);
     res.status(400).send({
@@ -351,37 +325,6 @@ export const productCategoryController = async (req, res) => {
 export const brainTreePaymentController = async (req, res) => {
   try {
     const { cart, auth } = req.body;
-    // let total = 0;
-    // cart.map((i) => {
-    //   total += i.price;
-    // });
-    // let newTransaction = gateway.transaction.sale(
-    //   {
-    //     amount: total,
-    //     paymentMethodNonce: nonce,
-    //     options: {
-    //       submitForSettlement: true,
-    //     },
-    //   },
-    //   function (error, result) {
-    //     if (result) {
-    //  console.log("CART:") ;
-    //  console.log(cart) ;
-
-    //  const order = await new orderModel({
-    //   products: cart,
-    //   buyer: auth.user._id,
-    //   status:"Processing" ,
-
-    // }).save();
-    // res.json({ ok: true });
-    // } else {
-    //   res.status(500).send(error);
-    // }
-    // }
-    // console.log("CART:") ;
-    // console.log(cart) ;
-
     const productsInCart = cart.map((item) => item.productId);
 
     // Fetch the actual product objects from the database

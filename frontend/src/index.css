@@ -156,6 +156,7 @@ p {
   border: none;
   border-radius: 4px;
   padding: 10px 20px;
+  margin-top: 10px;
   cursor: pointer;
   transition: background-color 0.3s ease;
 }
@@ -170,6 +171,7 @@ p {
   border: none;
   border-radius: 4px;
   padding: 10px 20px;
+  margin-top: 10px;
 }
 
 .btn-secondary:hover {

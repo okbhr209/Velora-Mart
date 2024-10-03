@@ -27,7 +27,7 @@ import Categories from "./pages/user/Categories";
 import CategoryProduct from "./pages/user/CategoryProduct";
 import CartPage from "./pages/user/CartPage";
 import AdminOrders from "./pages/Admin/AdminOrders";
-// import
+
 const App = () => {
   return (
     <>
@@ -43,24 +43,16 @@ const App = () => {
           <Route path="user" element={<Dashboard />} />
           <Route path="user/orders" element={<Orders />} />
           <Route path="user/profile" element={<Profile />} />
-
-          {/* Fallback for invalid admin routes */}
-          {/* <Route path="*" element={<PageNotFound />} /> */}
         </Route>
 
         <Route path="/dashboard" element={<AdminRoute />}>
           <Route path="admin" element={<AdminDashboard />} />
           <Route path="admin/create-product" element={<CreateProduct />} />
-          {/* <Route path="admin/update-product" element={<UpdateProduct/>}/>  */}
           <Route path="admin/create-category" element={<CreateCategory />} />
           <Route path="admin/product/:slug" element={<UpdateProduct />} />
           <Route path="admin/users" element={<Users />} />
           <Route path="admin/products" element={<Products />} />
-          {/* <Route path="admin/users" element={<Users />} /> */}
           <Route path="admin/orders" element={<AdminOrders />} />
-
-          {/* Fallback for invalid admin routes */}
-          {/* <Route path="*" element={<PageNotFound />} /> */}
         </Route>
 
         <Route path="/about" element={<About />} />

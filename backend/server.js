@@ -6,7 +6,6 @@ import connectDB from "./config/db.js";
 import authRoutes from "./routes/authRoute.js";
 import categoryRoutes from "./routes/categoryRoutes.js";
 import productRoutes from "./routes/productRoutes.js";
-
 import cors from "cors";
 
 // configure env
@@ -27,15 +26,6 @@ app.use(cors());
 app.use("/api/v1/auth", authRoutes);
 app.use("/api/v1/category", categoryRoutes);
 app.use("/api/v1/product", productRoutes);
-
-// rest api
-app.get("/", (req, res) => {
-  res.send("<h1> Welcome to our ECOM website.</h1>");
-});
-
-// app.get("/api/v1/auth/user-auth" , (req,res)=>{
-//     res.status(200).send( {ok : true }) ;
-// }) ;
 
 // PORT
 const PORT = process.env.PORT || 8080;

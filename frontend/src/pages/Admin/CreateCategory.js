@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import Layout from "./../../components/Layout/Layout";
 import AdminMenu from "./../../components/Layout/AdminMenu";
-import { ToastContainer, toast } from "react-toastify";
+import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import "../../styles/AuthStyles.css";
 
@@ -9,22 +9,24 @@ import axios from "axios";
 import CategoryForm from "../../components/Form/CategoryForm";
 import { Modal } from "antd";
 
-
 const CreateCategory = () => {
   const [categories, setCategories] = useState([]);
   const [name, setName] = useState("");
   const [visible, setVisible] = useState(false);
   const [selected, setSelected] = useState(null);
-  const [x , setX ] = useState(1) ;
+  const [x, setX] = useState(1);
 
   const [updatedName, setUpdatedName] = useState("");
   //handle Form
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      const { data } = await axios.post(`${process.env.REACT_APP_API}/api/v1/category/create-category`, {
-        name,
-      }); 
+      const { data } = await axios.post(
+        `${process.env.REACT_APP_API}/api/v1/category/create-category`,
+        {
+          name,
+        }
+      );
       if (data?.success) {
         toast.success(`${name} is created`);
         getAllCategory();
@@ -40,7 +42,9 @@ const CreateCategory = () => {
   //get all cat
   const getAllCategory = async () => {
     try {
-      const { data } = await axios.get(`${process.env.REACT_APP_API}/api/v1/category/get-category`);
+      const { data } = await axios.get(
+        `${process.env.REACT_APP_API}/api/v1/category/get-category`
+      );
       if (data?.success) {
         setCategories(data?.category);
       }
@@ -50,8 +54,8 @@ const CreateCategory = () => {
     }
   };
 
-  console.log(categories) ;
-  
+  console.log(categories);
+
   useEffect(() => {
     getAllCategory();
   }, []);
@@ -83,11 +87,10 @@ const CreateCategory = () => {
       const { data } = await axios.delete(
         `${process.env.REACT_APP_API}/api/v1/category/delete-category/${pId}`
       );
-      console.log(data) ; 
+      console.log(data);
       if (data.success) {
-        console.log(data.category) ; 
-          toast.success(`category has been deleted`);
-
+        console.log(data.category);
+        toast.success(`category has been deleted`);
         getAllCategory();
       } else {
         toast.error(data.message);
@@ -156,14 +159,14 @@ const CreateCategory = () => {
               onCancel={() => setVisible(false)}
               footer={null}
               visible={visible}
-            >  
-                  <h3>Update</h3>
-                 <CategoryForm
+            >
+              <h3>Update</h3>
+              <CategoryForm
                 value={updatedName}
                 setValue={setUpdatedName}
                 handleSubmit={handleUpdate}
-                x="0" 
-              />   
+                x="0"
+              />
             </Modal>
           </div>
         </div>
@@ -173,48 +176,3 @@ const CreateCategory = () => {
 };
 
 export default CreateCategory;
-
-// import React from 'react'
-// import AdminMenu from '../../components/Layout/AdminMenu';
-// import Layout from '../../components/Layout/Layout';
-
-// const CreateCategory = () => {
-//   return (
-//     <Layout title={"Dashboard- Create Category"} >
-//         <div className="container-fluid m-3 p-3 dashboard">
-//           <div className='row'>
-//             <div className='col-md-3'>
-//               <AdminMenu/>
-//             </div>
-
-//             <div className='col-md-9'>
-//               <h1>Create Category</h1>
-//             </div>
-
-//           </div>
-//         </div>
-//     </Layout>
-//   )
-// }
-
-// export default CreateCategory ;
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
- 

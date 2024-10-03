@@ -2,11 +2,10 @@ import React, { useState, useEffect } from "react";
 import Layout from "./../../components/Layout/Layout";
 import axios from "axios";
 import { useNavigate, useLocation } from "react-router-dom";
-import { ToastContainer, toast } from "react-toastify";
+import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import "../../styles/AuthStyles.css";
 import { useAuth } from "../../components/context/auth";
-import GrowExample from "../../components/Routes/sp";
 
 const Login = () => {
   const [email, setEmail] = useState("");
@@ -29,7 +28,6 @@ const Login = () => {
       );
 
       if (res.data.success) {
-        //location.state ||
         setAuth({
           ...auth,
           user: res.data.user,
@@ -96,8 +94,6 @@ const Login = () => {
           </button>
         </form>
       </div>
-
-      {/* <GrowExample /> */}
     </Layout>
   );
 };

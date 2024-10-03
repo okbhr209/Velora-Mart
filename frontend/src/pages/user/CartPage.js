@@ -1,16 +1,12 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { AiFillWarning } from "react-icons/ai";
 import axios from "axios";
 import { useAuth } from "../../components/context/auth";
 import { useCart } from "../../components/context/cart";
 import Layout from "../../components/Layout/Layout";
 import "../../styles/CartStyles.css";
-import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
-import Spinner from "../../components/Spinner";
 import { Link } from "react-router-dom";
-import { slugify } from "slugify";
 
 const CartPage = () => {
   const [auth, setAuth] = useAuth();

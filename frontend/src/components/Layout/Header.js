@@ -31,14 +31,6 @@ const Header = () => {
   return (
     <>
       <nav className="navbar navbar-expand-lg bg-body-tertiary">
-        {/* banner image */}
-        {/* <img
-          src={cartLogo}
-          className="banner-img"
-          alt="bannerimage"
-          width={"100%"}
-        /> */}
-
         <div className="container-fluid">
           <button
             className="navbar-toggler"
@@ -55,10 +47,6 @@ const Header = () => {
             <Link to="/" className="navbar-brand">
               🛒 Velora Mart
             </Link>
-            {/* <img
-              src={cartLogo}
-              style={({ height: "50px" }, { width: "50px" })}
-            /> */}
             <ul className="navbar-nav ms-auto mb-2 mb-lg-0">
               <SearchInput />
               <li className="nav-item">

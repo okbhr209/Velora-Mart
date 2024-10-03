@@ -1,31 +1,33 @@
 import express from "express";
-// import registerController from "../controllers/authController.js";
-import {forgotPasswordController, getAllOrdersController, getOrdersController, orderStatusController, registerController, testController, updateProfileController} from "../controllers/authController.js";
+import {
+  forgotPasswordController,
+  getAllOrdersController,
+  getOrdersController,
+  orderStatusController,
+  registerController,
+  testController,
+  updateProfileController,
+} from "../controllers/authController.js";
 import { loginController } from "../controllers/authController.js";
 import { isAdmin, requireSignIn } from "../middlewares/authMiddleware.js";
-import { updateProductController } from "../controllers/productController.js";
+const router = express.Router();
+router.post("/register", registerController);
 
-const router = express.Router() ;
+router.post("/login", loginController);
 
-// Register || METHOD :POST 
-router.post("/register" , registerController) ;
+router.get("/test", requireSignIn, isAdmin, testController);
 
-// Login || METHOD : POST 
-router.post("/login" ,loginController ) ;
+router.post("/forgot-password", forgotPasswordController);
 
-router.get("/test" , requireSignIn , isAdmin , testController) ;
-
-router.post("/forgot-password" , forgotPasswordController) ;
-
-// protected routes 
-router.get("/user-auth" , requireSignIn , (req,res)=>{
-    res.status(200).send({ "ok":true}) ;
-}) ;
+// protected routes
+router.get("/user-auth", requireSignIn, (req, res) => {
+  res.status(200).send({ ok: true });
+});
 
 //protected routes for admin
 router.get("/admin-auth", requireSignIn, isAdmin, (req, res) => {
-    res.status(200).send({ ok: true });
-  });
+  res.status(200).send({ ok: true });
+});
 
 //update profile
 router.put("/profile", requireSignIn, updateProfileController);
@@ -37,7 +39,10 @@ router.get("/orders", requireSignIn, getOrdersController);
 router.get("/all-orders", requireSignIn, isAdmin, getAllOrdersController);
 
 // order status update
-router.put( "/order-status/:orderId", requireSignIn, isAdmin, orderStatusController );
-
-
-export default router ;
+router.put(
+  "/order-status/:orderId",
+  requireSignIn,
+  isAdmin,
+  orderStatusController
+);
+export default router;
