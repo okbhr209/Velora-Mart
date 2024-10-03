@@ -1,0 +1,35 @@
+import React from "react";
+import Layout from "./../components/Layout/Layout";
+import { BiMailSend, BiPhoneCall, BiSupport } from "react-icons/bi";
+import cn from "./../images/Contact-Us-page-banner.jpg";
+
+const Contact = () => {
+  return (
+    <Layout title={"Contact us"}>
+      <div className="row contactus ">
+        <div className="col-md-6 ">
+          <img src={cn} alt="contactus" style={{ width: "100%" }} />
+        </div>
+        <div className="col-md-4">
+          <h1 className="bg-dark p-2 text-white text-center">CONTACT US</h1>
+          <p className="text-justify mt-2">
+            We’d love to hear from you! Whether you have a question about our
+            products, pricing, need a demo, or anything else, our team is ready
+            to answer all your questions.
+          </p>
+          <p className="mt-3">
+            <BiMailSend /> : customersupport@veloramart.ac.in
+          </p>
+          <p className="mt-3">
+            <BiPhoneCall /> : 012-3456789
+          </p>
+          <p className="mt-3">
+            <BiSupport /> : 1800-0000-0000 (toll free)
+          </p>
+        </div>
+      </div>
+    </Layout>
+  );
+};
+
+export default Contact;
